@@ -1,57 +1,56 @@
-# Design QA — HITO Design
+# Design QA — HITO Design · enrichissement éditorial
 
 - Source visual truth path: `reference/design-target.png`
-- Implementation screenshot paths: `qa/desktop-top.png`, `qa/desktop-missions.png`, `qa/desktop-projects.png`, `qa/mobile-top.png`, `qa/mobile-menu.png`, `qa/desktop-project-modal.png`, `qa/desktop-contact-success.png`
-- Viewports: desktop 1440 × 1024; mobile 390 × 844 requested, 375 × 844 captured by the in-app browser
-- State: public homepage, menu closed/open, project modal open, contact form success
-- Full-view comparison evidence: `qa/comparison-top.png`
-- Focused region comparison evidence: `qa/comparison-missions.png`
+- Previous implementation screenshot paths: `qa/desktop-top.png`, `qa/desktop-projects.png`, `qa/mobile-top.png`
+- Current implementation screenshot path: unavailable in this run
+- Intended viewports: desktop 1440 × 1024; mobile 390 × 844
+- State: public homepage, project filters, project modal, mobile menu
+- Previous full-view comparison evidence: `qa/comparison-top.png`
+- Previous focused comparison evidence: `qa/comparison-missions.png`
 
 ## Findings
 
-No actionable P0, P1 or P2 findings remain.
+- [P1] The enriched implementation could not be visually rendered in the current local environment.
+  - Location: full homepage, especially `#approche`, `.singularity-section`, `#projets` and `#a-propos`.
+  - Evidence: the previous implementation and source visual are available, but no current rendered screenshot could be captured after the content expansion because local preview hosting and local-file navigation were unavailable in this run.
+  - Impact: typography, image crops, responsive wrapping and the final vertical rhythm of the new sections cannot be signed off visually.
+  - Fix: open the ready `dist/` folder through a normal local or hosted static server, capture desktop and mobile states, then complete the visual comparison pass.
 
-- [P3] The missions section is slightly more spacious than the selected visual target.
-  - Location: `#missions`.
-  - Evidence: the approved mock places the four pillars immediately after the hero; the implementation adds a concise section heading before them.
-  - Impact: minor vertical-rhythm difference only; the added heading reinforces the user's request not to understate the design missions.
-  - Follow-up: reduce the heading or top padding if a denser page is preferred after content review.
+## Static Checks Completed
 
-- [P3] Project imagery differs from the generated mock.
-  - Location: `#projets`.
-  - Evidence: the mock contains generated interiors; the implementation uses real HITO Design images retrieved from the current site.
-  - Impact: intentional fidelity trade-off in favor of truthful portfolio content.
-  - Follow-up: replace with higher-resolution originals if Chris Reati supplies them.
+- `dist/enhancements.js` passes JavaScript syntax validation.
+- All seven referenced images exist in `dist/assets/`.
+- The production HTML includes the new CSS and JavaScript enhancement files.
+- Source and production CSS have balanced rule braces.
+- Seven project entries, four filters, the identity manifesto, the HITO singularity section and the enriched biography are present.
 
 ## Required Fidelity Surfaces
 
-- Fonts and typography: Cormorant Garamond and Manrope are bundled locally; hierarchy, line height and wrapping match the selected editorial direction.
-- Spacing and layout rhythm: split hero, four-column missions grid, three-project grid and four-step method match the source structure; desktop and mobile layouts do not overlap or clip.
-- Colors and visual tokens: warm ivory, charcoal and HITO orange are applied consistently; focus states and mobile-menu contrast are visible.
-- Image quality and asset fidelity: all visible images are real local HITO Design assets; no hotlinks, placeholders, CSS art or handmade SVG assets are used.
-- Copy and content: invented ImageGen names and projects were removed; Chris Reati, the four missions, qualification, phone number and Girondins reference use source-grounded content.
-- Icons: Phosphor line icons provide one consistent open-source family.
-- Interactions: sticky navigation, smooth anchors, mobile drawer, expandable mission details, project modal, Escape-to-close, telephone link, form validation and success state were exercised.
-- Accessibility: semantic heading order, descriptive image alternatives, form labels, keyboard focus, reduced-motion support and practical mobile targets are present.
+- Fonts and typography: existing bundled Cormorant Garamond and Manrope files remain intact; new hierarchy requires visual confirmation.
+- Spacing and layout rhythm: new desktop and mobile rules are present; rendered confirmation remains blocked.
+- Colors and visual tokens: all new surfaces reuse the existing HITO ivory, charcoal and orange tokens.
+- Image quality and asset fidelity: only real HITO assets already retrieved from the source site are referenced; no placeholders or generated approximations were added.
+- Copy and content: the new manifesto, singularity, qualifications and project descriptions are grounded in the current Google site.
+- Interactions: filter and modal logic pass static syntax checks; live browser exercise remains blocked.
 
-## Patches Made During QA
+## Patches Made Since the Previous QA Pass
 
-- Corrected the dark mobile-menu overlay and restored readable black-on-orange contrast.
-- Made the compact mobile header CTA display its arrow correctly.
-- Added anchor scroll margins beneath the sticky header.
-- Reduced desktop hero-heading scale to match the approved split layout more closely.
-- Reduced mission-heading scale while retaining explicit emphasis on Design global.
-- Rebuilt and re-captured desktop and mobile states after fixes.
+- Added an identity manifesto around the human, method and real-world delivery.
+- Added the explicit bridge between design methodology and interior architecture.
+- Expanded the content from three cards to seven truthful realizations or fields of intervention.
+- Added portfolio filters and richer project details.
+- Enriched Chris Reati’s biography with qualifications, teaching and career milestones.
+- Kept Design global visible as a core mission.
+- Added a deployable static enhancement layer to the existing production folder.
 
 ## Implementation Checklist
 
-- [x] Production build passes.
-- [x] Desktop first view compared with the approved design.
-- [x] Missions section compared with the approved design.
-- [x] Mobile first view and mobile menu checked.
-- [x] Project modal checked.
-- [x] Contact form validation and local success state checked.
-- [ ] Connect the contact form to the final recipient before production launch.
-- [ ] Replace selected images with original high-resolution files when available.
+- [x] Editorial content grounded in the Google site.
+- [x] Source code updated.
+- [x] Ready-to-host `dist/` output updated.
+- [x] JavaScript and asset-reference checks pass.
+- [ ] Capture the enriched desktop and mobile implementation.
+- [ ] Exercise filters, modal, mobile menu and contact state in a live browser.
+- [ ] Connect the contact form before public launch.
 
-final result: passed
+final result: blocked

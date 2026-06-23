@@ -5,10 +5,12 @@ Prototype responsive construit à partir de l’audit du 22 juin 2026 et de la d
 ## Contenu inclus
 
 - Accueil premium et responsive
+- Manifeste identitaire : l’humain, la méthode et le réel
 - Quatre missions : Design global, Architecture intérieure, AMO et Formation
-- Sélection de projets avec fiches interactives
+- Sept réalisations et terrains d’intervention, filtrables, avec fiches détaillées
+- Mise en avant de la singularité « design + architecture intérieure »
 - Méthode en quatre étapes
-- Présentation de Chris Reati
+- Présentation enrichie de Chris Reati, qualifications et parcours
 - Formulaire de contact avec validation et état de confirmation
 - Navigation mobile accessible
 - Métadonnées de référencement essentielles
@@ -29,7 +31,7 @@ Il est également recommandé de remplacer les images de portfolio par les fichi
 6. Après validation, ouvrir **Project Settings → Domains** et ajouter le nom de domaine.
 7. Appliquer les enregistrements DNS indiqués par Vercel.
 
-Le dossier `dist/` contient déjà une version de production vérifiée.
+Le dossier `dist/` contient déjà la version autonome prête à déposer chez un hébergeur statique.
 
 ## Aperçu local
 

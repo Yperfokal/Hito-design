@@ -52,27 +52,107 @@ const missions = [
 const projects = [
   {
     title: "Boutique Galerie Girondins",
-    category: "Retail · Architecture intérieure",
+    category: "Architecture",
+    meta: "Retail · Architecture intérieure",
     image: "/assets/project-boutique-fcgb.jpg",
     alt: "Boutique du FC Girondins de Bordeaux conçue par HITO Design",
     description:
       "Conception et maîtrise d’œuvre d’une surface de vente de 700 m² au Matmut Atlantique, pensée comme un lieu identitaire et exploitable.",
+    contribution:
+      "Traduire l’image du club en expérience spatiale, tenir les usages d’une forte fréquentation et coordonner le projet jusqu’à la livraison.",
+    proof: "700 m² · Matmut Atlantique · Budget et délais tenus",
   },
   {
     title: "Hospitality & restauration",
-    category: "Design global · Parcours client",
+    category: "Design",
+    meta: "Design global · Parcours client",
     image: "/assets/project-restaurant.jpg",
     alt: "Restaurant aménagé avec espaces de repas et séparation textile",
     description:
       "Concilier l’expérience client, les flux, la maintenance et une identité de lieu durable dans le temps.",
+    contribution:
+      "Tenir ensemble la promesse faite au client et la réalité quotidienne des équipes : parcours, lumière, matière, entretien et exploitation.",
+    proof: "Expérience client · Flux équipe · Durabilité",
   },
   {
     title: "Identité de lieu",
-    category: "Scénographie · Expérience",
+    category: "Design",
+    meta: "Scénographie · Expérience",
     image: "/assets/project-trophies.jpg",
     alt: "Scénographie de trophées sur une composition de volumes blancs",
     description:
       "Transformer les objets, les usages et l’histoire d’une organisation en expérience spatiale lisible et mémorable.",
+    contribution:
+      "Hiérarchiser les signes, organiser le regard et créer un récit spatial qui donne du sens sans surcharger l’espace.",
+    proof: "Récit · Mise en scène · Mémoire collective",
+  },
+  {
+    title: "Lieux de vie sur mesure",
+    category: "Architecture",
+    meta: "Architecture intérieure · Habitat",
+    image: "/assets/hero-interior.jpg",
+    alt: "Intérieur contemporain avec suspensions sculpturales et espace de vie",
+    description:
+      "Composer un lieu à partir des usages réels, de la lumière, des volumes et de la personnalité de celles et ceux qui l’habitent.",
+    contribution:
+      "Écouter avant de dessiner, clarifier les priorités puis développer chaque détail pour préserver l’intention jusqu’au chantier.",
+    proof: "Usages · Matières · Lumière · Détails",
+  },
+  {
+    title: "AMO & coordination",
+    category: "AMO",
+    meta: "Assistance · Arbitrage · Équipe",
+    image: "/assets/mission-amo.jpg",
+    alt: "Équipe réunie autour de documents de conception et de coordination",
+    description:
+      "Aider une maîtrise d’ouvrage ou une équipe à poser les bonnes questions, décider au bon moment et sécuriser les interfaces.",
+    contribution:
+      "Rendre le projet lisible, installer une méthode de décision et constituer l’équipe pluridisciplinaire adaptée au contexte.",
+    proof: "Cadrage · Budget · Planning · Interfaces",
+  },
+  {
+    title: "Formation & workshops",
+    category: "Formation",
+    meta: "Transmission · Méthodologie design",
+    image: "/assets/mission-formation.jpg",
+    alt: "Atelier collectif de formation à la méthodologie design",
+    description:
+      "Transmettre une pratique concrète du design pour mieux écouter, structurer, prototyper, décider et partager.",
+    contribution:
+      "Construire des formats ancrés dans les situations réelles des participants, avec des outils immédiatement réutilisables.",
+    proof: "Enseignement depuis 2014 · Bachelor & Mastère",
+  },
+  {
+    title: "TRANSMETTRE",
+    category: "Formation",
+    meta: "Livre · Design pédagogique",
+    image: "/assets/livre-transmettre.jpg",
+    alt: "Livre TRANSMETTRE de Chris Reati consacré à la pédagogie",
+    description:
+      "Un travail d’auteur sur la transmission, le rôle du designer et la manière de rendre une démarche partageable.",
+    contribution:
+      "Mettre en mots l’expérience, relier pratique professionnelle et pédagogie, et faire de la méthode un outil d’autonomie.",
+    proof: "Écriture · Pédagogie · Culture design",
+  },
+];
+
+const projectFilters = ["Tous", "Architecture", "Design", "AMO", "Formation"];
+
+const principles = [
+  {
+    number: "01",
+    title: "L’humain",
+    text: "Vos usages, vos contraintes, vos objectifs et votre identité sont la matière première du projet.",
+  },
+  {
+    number: "02",
+    title: "La méthode",
+    text: "Écouter, clarifier, prioriser et arbitrer : la clarté protège le projet comme les personnes qui le portent.",
+  },
+  {
+    number: "03",
+    title: "Le réel",
+    text: "Un lieu doit être beau, fluide et singulier — mais aussi faisable, durable et exploitable au quotidien.",
   },
 ];
 
@@ -90,7 +170,12 @@ function scrollTo(id) {
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [projectFilter, setProjectFilter] = useState("Tous");
   const [formSent, setFormSent] = useState(false);
+
+  const visibleProjects = projectFilter === "Tous"
+    ? projects
+    : projects.filter((project) => project.category === projectFilter);
 
   useEffect(() => {
     const onKeyDown = (event) => {
@@ -130,9 +215,9 @@ export function App() {
           <img src="/assets/hito-logo.png" alt="HITO Design" />
         </button>
         <nav className="desktop-nav" aria-label="Navigation principale">
+          <button type="button" onClick={() => scrollTo("approche")}>Approche</button>
           <button type="button" onClick={() => scrollTo("missions")}>Missions</button>
           <button type="button" onClick={() => scrollTo("projets")}>Projets</button>
-          <button type="button" onClick={() => scrollTo("methode")}>Méthode</button>
           <button type="button" onClick={() => scrollTo("a-propos")}>À propos</button>
         </nav>
         <button className="header-cta" type="button" onClick={() => scrollTo("contact")}>
@@ -152,6 +237,7 @@ export function App() {
           </button>
           <img src="/assets/hito-logo.png" alt="HITO Design" />
           {[
+            ["approche", "Approche"],
             ["missions", "Missions"],
             ["projets", "Projets"],
             ["methode", "Méthode"],
@@ -206,6 +292,30 @@ export function App() {
           </div>
         </section>
 
+        <section id="approche" className="manifesto-section">
+          <div className="manifesto-statement">
+            <p className="kicker light">Le sens avant le style</p>
+            <h2>Un lieu n’est jamais qu’un lieu.</h2>
+            <p className="manifesto-lead">
+              C’est un usage, une économie, une équipe, une culture, une histoire à raconter
+              — et des arbitrages à assumer.
+            </p>
+            <p>
+              HITO Design est une identité d’auteur en architecture intérieure et design :
+              sensible, humaine, contextuelle et responsable.
+            </p>
+          </div>
+          <div className="principles-grid">
+            {principles.map((principle) => (
+              <article key={principle.number} className="principle-card">
+                <span>{principle.number}</span>
+                <h3>{principle.title}</h3>
+                <p>{principle.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="missions" className="section missions-section">
           <div className="section-heading">
             <p className="kicker">Nos missions</p>
@@ -229,16 +339,62 @@ export function App() {
           </div>
         </section>
 
+        <section className="singularity-section">
+          <div className="singularity-title">
+            <p className="kicker">La singularité HITO</p>
+            <h2>Tenir le design et l’architecture intérieure ensemble.</h2>
+          </div>
+          <div className="singularity-columns">
+            <article>
+              <span>Design</span>
+              <h3>Donner une direction juste.</h3>
+              <p>
+                Clarifier le besoin, structurer les décisions, prioriser, tester et arbitrer
+                pour que chaque choix serve une intention partagée.
+              </p>
+            </article>
+            <div className="singularity-plus" aria-hidden="true">+</div>
+            <article>
+              <span>Architecture intérieure</span>
+              <h3>Rendre cette direction possible.</h3>
+              <p>
+                Transformer la clarté en plans, volumes, matières, lumière, détails,
+                faisabilité et coordination jusqu’à la mise en œuvre.
+              </p>
+            </article>
+          </div>
+          <p className="singularity-conclusion">
+            C’est souvent ce qui fait la différence entre un projet séduisant et un projet
+            qui fonctionne vraiment — sans perdre le sens en route.
+          </p>
+        </section>
+
         <section id="projets" className="section projects-section">
           <div className="section-heading horizontal-heading">
             <div>
-              <p className="kicker">Projets sélectionnés</p>
-              <h2>Des références qui racontent la méthode.</h2>
+              <p className="kicker">Réalisations & terrains d’intervention</p>
+              <h2>Plus qu’un portfolio : une manière d’agir.</h2>
             </div>
-            <p>Architecture intérieure, design global et expériences de lieu.</p>
+            <p>
+              Réalisations livrées, typologies accompagnées et travail de transmission :
+              chaque entrée montre une facette concrète du métier.
+            </p>
+          </div>
+          <div className="project-filters" aria-label="Filtrer les réalisations">
+            {projectFilters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                className={filter === projectFilter ? "is-active" : ""}
+                aria-pressed={filter === projectFilter}
+                onClick={() => setProjectFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
           </div>
           <div className="projects-grid">
-            {projects.map((project) => (
+            {visibleProjects.map((project) => (
               <button
                 key={project.title}
                 className="project-card"
@@ -246,7 +402,7 @@ export function App() {
                 onClick={() => setSelectedProject(project)}
               >
                 <img src={project.image} alt={project.alt} />
-                <span className="project-meta">{project.category}</span>
+                <span className="project-meta">{project.meta}</span>
                 <strong>{project.title}</strong>
                 <span className="project-link">Découvrir <ArrowRight size={16} /></span>
               </button>
@@ -293,11 +449,21 @@ export function App() {
               intérieure et de design global, avec une attention égale portée aux usages,
               à l’économie du projet et à l’identité du lieu.
             </p>
-            <ul>
-              <li>Architecte d’intérieur qualifié UNAID</li>
-              <li>Enseignant en Bachelor et Mastère depuis 2014</li>
-              <li>Capacité à constituer et piloter des équipes pluridisciplinaires</li>
-            </ul>
+            <p>
+              Avant de dessiner, j’écoute. Pas pour simplement prendre note, mais pour
+              comprendre ce qui est essentiel, ce qui doit évoluer et ce qui ne doit pas
+              être trahi.
+            </p>
+            <div className="about-facts">
+              <article><strong>25 ans</strong><span>d’architecture intérieure et de design global</span></article>
+              <article><strong>UNAID</strong><span>Architecte d’intérieur qualifié · n°3320</span></article>
+              <article><strong>Depuis 2014</strong><span>Enseignant en Bachelor et Mastère</span></article>
+            </div>
+            <div className="about-journey">
+              <p><span>Depuis 2022</span> HITO Design · identité d’auteur</p>
+              <p><span>2012 — 2022</span> Atelier YF Aaidg</p>
+              <p><span>2004 — 2011</span> Reati-Design</p>
+            </div>
             <button className="text-link" type="button" onClick={() => scrollTo("contact")}>
               Échanger avec Chris Reati <ArrowRight size={18} />
             </button>
@@ -376,9 +542,14 @@ export function App() {
             </button>
             <img src={selectedProject.image} alt={selectedProject.alt} />
             <div>
-              <p className="kicker">{selectedProject.category}</p>
+              <p className="kicker">{selectedProject.meta}</p>
               <h2 id="project-modal-title">{selectedProject.title}</h2>
               <p>{selectedProject.description}</p>
+              <div className="modal-detail">
+                <span>La contribution HITO</span>
+                <p>{selectedProject.contribution}</p>
+              </div>
+              <p className="modal-proof">{selectedProject.proof}</p>
               <button
                 className="button button-primary"
                 type="button"
