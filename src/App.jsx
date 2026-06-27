@@ -9,6 +9,7 @@ import {
   UsersThree,
   X,
 } from "@phosphor-icons/react";
+import { Analytics } from "@vercel/analytics/react";
 
 const missions = [
   {
@@ -728,6 +729,7 @@ export function App() {
           </article>
         </div>
       )}
+      <Analytics />
     </div>
   );
 }
