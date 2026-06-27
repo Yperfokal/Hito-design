@@ -243,7 +243,6 @@ export function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [projectFilter, setProjectFilter] = useState("Tous");
   const [showAllClients, setShowAllClients] = useState(false);
-  const [formSent, setFormSent] = useState(false);
 
   const visibleProjects = projectFilter === "Tous"
     ? projects
@@ -265,12 +264,6 @@ export function App() {
     return () => document.body.classList.remove("no-scroll");
   }, [menuOpen, selectedProject]);
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    setFormSent(true);
-    event.currentTarget.reset();
-  };
-
   return (
     <div className="site-shell">
       <header className="site-header">
@@ -291,6 +284,7 @@ export function App() {
           <button type="button" onClick={() => scrollTo("missions")}>Missions</button>
           <button type="button" onClick={() => scrollTo("projets")}>Projets</button>
           <button type="button" onClick={() => scrollTo("references")}>Références</button>
+          <a href="/methode-hito/">Méthode</a>
           <a href="https://sites.google.com/view/hitodesign/accueil" target="_blank" rel="noreferrer">Carnets</a>
         </nav>
         <button className="header-cta" type="button" onClick={() => scrollTo("contact")}>
@@ -635,7 +629,15 @@ export function App() {
               <Phone size={22} /> 06 51 99 07 46
             </a>
           </div>
-          <form className="contact-form" onSubmit={handleFormSubmit}>
+          <form className="contact-form" action="https://formsubmit.co/contact@hito-design.fr" method="POST">
+            <input type="hidden" name="_subject" value="Nouvelle demande depuis hito-design.fr" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://www.hito-design.fr/?contact=merci#contact" />
+            <label className="form-honey">
+              Ne pas remplir ce champ
+              <input name="_honey" type="text" tabIndex="-1" autoComplete="off" />
+            </label>
             <label>
               Nom et prénom
               <input name="name" type="text" autoComplete="name" required />
@@ -661,19 +663,24 @@ export function App() {
             <button className="button button-dark" type="submit">
               Envoyer la demande <ArrowRight size={19} />
             </button>
-            {formSent && (
-              <p className="form-success" role="status">
-                Merci. Votre demande est prête pour l’envoi ; la connexion e-mail sera activée lors de la mise en ligne.
-              </p>
-            )}
           </form>
         </section>
       </main>
 
       <footer className="site-footer">
         <img src="/assets/hito-logo.png" alt="HITO Design" />
-        <p>Architecture intérieure · Design global · AMO · Formation</p>
-        <p>Gers · Nouvelle-Aquitaine · Occitanie · Projets partout en France</p>
+        <div>
+          <p>Architecture intérieure · Design global · AMO · Formation</p>
+          <p>Gers · Nouvelle-Aquitaine · Occitanie · Projets partout en France</p>
+        </div>
+        <nav className="footer-links" aria-label="Pages utiles pour les moteurs de recherche">
+          <a href="/architecture-interieure/">Architecture intérieure</a>
+          <a href="/design-global/">Design global</a>
+          <a href="/amo-design-architecture/">AMO design</a>
+          <a href="/formation-design/">Formation design</a>
+          <a href="/references/">Références</a>
+          <a href="/carnets/">Carnets HITO</a>
+        </nav>
       </footer>
 
       {selectedProject && (

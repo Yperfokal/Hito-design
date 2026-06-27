@@ -16,11 +16,26 @@ Prototype responsive construit à partir de l’audit du 22 juin 2026 et de la d
 - Passerelle éditoriale vers le Google Sites, repositionné comme « Les Carnets HITO »
 - Formulaire de contact avec validation et état de confirmation
 - Navigation mobile accessible
-- Métadonnées de référencement essentielles
+- Métadonnées de référencement enrichies : canonical, Open Graph, Twitter Card, robots
+- Données structurées JSON-LD pour HITO Design, Chris Reati, le site et les offres
+- Fichiers techniques SEO : `robots.txt`, `sitemap.xml`
+- Fichier de contexte pour assistants IA : `llms.txt`
+- Pages crawlables dédiées :
+  - `/architecture-interieure/`
+  - `/design-global/`
+  - `/amo-design-architecture/`
+  - `/formation-design/`
+  - `/methode-hito/`
+  - `/references/`
+  - `/carnets/`
+
+## Formulaire de contact
+
+Le formulaire est connecté à `contact@hito-design.fr` via FormSubmit.
+
+Lors du premier envoi réel, FormSubmit peut envoyer un e-mail de confirmation à `contact@hito-design.fr`. Il faut valider ce message une seule fois pour activer la réception des demandes.
 
 ## Avant la mise en production
-
-Le formulaire est volontairement en mode prototype : il valide les champs et affiche une confirmation, mais n'envoie encore aucun message. Il faudra fournir l'adresse e-mail destinataire pour connecter l'envoi via un service de formulaire ou une fonction Vercel.
 
 Il est également recommandé de remplacer les images de portfolio par les fichiers originaux en haute résolution lorsqu'ils seront disponibles.
 
@@ -37,6 +52,8 @@ Il est également recommandé de remplacer les images de portfolio par les fichi
 Le dossier `dist/` contient déjà la version autonome prête à déposer chez un hébergeur statique.
 
 Les références clients sont placées dans `public/assets/clients/` pour le code source et dans `dist/assets/clients/` pour la version directement publiable.
+
+Après déploiement, il est recommandé de déclarer `https://www.hito-design.fr/sitemap.xml` dans Google Search Console et Bing Webmaster Tools, puis de demander l’indexation de la page d’accueil et des pages métiers.
 
 ## Aperçu local
 

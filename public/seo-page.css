@@ -1,0 +1,168 @@
+:root {
+  --orange: #ee8500;
+  --ink: #171717;
+  --muted: #65615b;
+  --paper: #fbfaf7;
+  --warm: #f2efe8;
+  --line: #d8d3ca;
+  --charcoal: #20201f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Manrope, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+main {
+  width: min(1040px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 56px 0 80px;
+}
+
+header,
+footer {
+  padding: 22px max(20px, 5vw);
+  background: var(--charcoal);
+  color: #f7efe3;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+header img {
+  width: 112px;
+  background: #fff;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+}
+
+a {
+  color: inherit;
+}
+
+header a,
+footer a {
+  color: #f7efe3;
+  text-decoration: none;
+}
+
+header a:hover,
+footer a:hover {
+  color: var(--orange);
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: var(--orange);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+h1 {
+  max-width: 850px;
+  margin: 0 0 24px;
+  font-size: clamp(3rem, 8vw, 6.7rem);
+}
+
+h2 {
+  margin-top: 54px;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 1.45rem;
+}
+
+.lead {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: clamp(1.08rem, 2vw, 1.34rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 30px 0;
+}
+
+.card,
+.quote,
+.faq {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.quote {
+  margin: 42px 0;
+  color: #fff;
+  background: var(--charcoal);
+}
+
+.quote p {
+  margin: 0;
+  font-size: 1.4rem;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+ul {
+  padding-left: 1.25rem;
+}
+
+.cta {
+  display: inline-flex;
+  margin-top: 28px;
+  padding: 13px 18px;
+  color: #fff;
+  background: var(--orange);
+  text-decoration: none;
+}
+
+footer {
+  display: grid;
+  gap: 14px;
+  color: #d4d0c9;
+  font-size: 0.82rem;
+}
+
+footer nav {
+  gap: 8px 14px;
+}
+
+@media (max-width: 760px) {
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
