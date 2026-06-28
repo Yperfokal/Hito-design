@@ -633,7 +633,6 @@ export function App() {
             <input type="hidden" name="_subject" value="Nouvelle demande depuis hito-design.fr" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://www.hito-design.fr/?contact=merci#contact" />
             <label className="form-honey">
               Ne pas remplir ce champ
               <input name="_honey" type="text" tabIndex="-1" autoComplete="off" />
