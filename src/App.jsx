@@ -9,6 +9,7 @@ import {
   UsersThree,
   X,
 } from "@phosphor-icons/react";
+import { Analytics } from "@vercel/analytics/react";
 
 const missions = [
   {
@@ -265,7 +266,9 @@ export function App() {
   }, [menuOpen, selectedProject]);
 
   return (
-    <div className="site-shell">
+    <>
+      <Analytics />
+      <div className="site-shell">
       <header className="site-header">
         <button
           className="mobile-menu-button"
@@ -728,6 +731,7 @@ export function App() {
           </article>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
